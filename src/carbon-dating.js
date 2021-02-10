@@ -16,7 +16,7 @@ module.exports = function dateSample(sampleActivity) {
     Math.log(MODERN_ACTIVITY / sampleActivity) /
       (Math.log(2) / HALF_LIFE_PERIOD)
   );
-  if (isNaN(t) == true) {
+  if (isNaN(t) == true || t == Infinity) {
     return false;
   }
   return t;
