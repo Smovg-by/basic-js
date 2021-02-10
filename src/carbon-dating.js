@@ -6,7 +6,7 @@ const HALF_LIFE_PERIOD = 5730;
 module.exports = function dateSample(sampleActivity) {
   const MODERN_ACTIVITY = 15;
   const HALF_LIFE_PERIOD = 5730;
-  let t;
+  let ELAPSED_TIME;
   if (
     typeof sampleActivity !== "string" ||
     sampleActivity > MODERN_ACTIVITY ||
@@ -15,12 +15,12 @@ module.exports = function dateSample(sampleActivity) {
     return false;
   }
 
-  t = Math.ceil(
+  ELAPSED_TIME = Math.ceil(
     Math.log(MODERN_ACTIVITY / sampleActivity) /
       (Math.log(2) / HALF_LIFE_PERIOD)
   );
-  if (isNaN(t) == true || t == Infinity) {
+  if (isNaN(ELAPSED_TIME) == true || ELAPSED_TIME == Infinity) {
     return false;
   }
-  return t;
+  return ELAPSED_TIME;
 };
