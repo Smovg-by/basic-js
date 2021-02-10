@@ -11,14 +11,12 @@ module.exports = function createDreamTeam(members) {
   for (i = 0; i < members.length; i++) {
     if (typeof members[i] == "string") {
       trimItem = members[i].split(" ").join("");
-      arr.push(trimItem[0]);
+      arr.push(trimItem[0].toUpperCase());
     } else {
       continue;
     }
   }
-  return arr.sort().join("").toUpperCase();
+  return arr.sort().join("");
 };
 
-// 1) should return false on wrong type
-// 2) should ignore non-string values
 // 3) should handle non-standard cases
