@@ -2,16 +2,16 @@ const CustomError = require("../extensions/custom-error");
 
 module.exports = function createDreamTeam(members) {
   let arr = [];
+  let trimItem;
 
   if (members == null || members == undefined || members.length == undefined) {
     return false;
   }
 
-  let noSpaces = members.map((item) => item.trim());
-
-  for (i = 0; i < noSpaces.length; i++) {
-    if (typeof noSpaces[i] == "string") {
-      arr.push(noSpaces[i][0]);
+  for (i = 0; i < members.length; i++) {
+    if (typeof members[i] == "string") {
+      trimItem = members[i].split(" ").join("");
+      arr.push(trimItem[0]);
     } else {
       continue;
     }
