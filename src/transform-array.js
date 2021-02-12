@@ -8,34 +8,41 @@ module.exports = function transform(arr) {
     return arr;
   }
 
-  let newArr = [];
-  let vrb;
+  let newArr = [...arr];
 
-  for (i = 0; i < arr.length; i++) {
-    if (typeof arr[i] == "number") {
-      newArr.push(arr[i]);
+  for (i = 0; i < newArr.length; i++) {
+    if (newArr[i] == "--discard-prev") {
+      newArr[i] = undefined;
+      if (newArr[i - 1] == undefined) {
+        continue;
+      } else {
+        newArr[i - 1] = undefined;
+      }
     }
-    if (arr[0] !== "number") {
-      if (arr[i] == "--discard-next" && arr[i + 1] !== undefined) {
-        i++;
+    if (newArr[i] == "--discard-next") {
+      newArr[i] = undefined;
+      if (newArr[i + 1] == undefined) {
         continue;
+      } else {
+        newArr[i + 1] = undefined;
       }
-      if (arr[i] == "--discard-prev" && arr[i - 1] !== undefined) {
-        newArr.pop(arr[i - 1]);
+    }
+    if (newArr[i] == "--double-prev") {
+      if (newArr[i - 1] == undefined) {
+        newArr[i] = undefined;
         continue;
+      } else {
+        newArr[i] = newArr[i - 1];
       }
-      if (arr[i] == "--double-next" && arr[i + 1] !== undefined) {
-        newArr.push(arr[i + 1] * 2);
-        i++;
+    }
+    if (newArr[i] == "--double-next") {
+      if (newArr[i + 1] == undefined) {
+        newArr[i] = undefined;
         continue;
-      }
-      if (arr[i] == "--double-prev" && arr[i - 1] !== undefined) {
-        newArr.pop(arr[i - 1]);
-        newArr.push(arr[i - 1] * 2);
-        continue;
+      } else {
+        newArr[i] = newArr[i + 1];
       }
     }
   }
-
-  return newArr;
+  return (newArr = newArr.filter((item) => typeof item == "number"));
 };
