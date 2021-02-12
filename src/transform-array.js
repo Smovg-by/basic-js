@@ -9,25 +9,33 @@ module.exports = function transform(arr) {
   }
 
   let newArr = [];
+  let vrb;
 
   for (i = 0; i < arr.length; i++) {
     if (typeof arr[i] == "number") {
       newArr.push(arr[i]);
     }
-    if (arr[i] == "--discard-next") {
-      i++;
-      continue;
-    }
-    if (arr[i] == "--discard-prev") {
-      newArr.pop(arr[i - 1]);
-      continue;
-    }
-    if (arr[i] == "--double-next") {
-      console.log("--double-next");
-    }
-    if (arr[i] == "--double-prev") {
-      console.log("--double-prev");
+    if (arr[0] !== "number") {
+      if (arr[i] == "--discard-next" && arr[i + 1] !== undefined) {
+        i++;
+        continue;
+      }
+      if (arr[i] == "--discard-prev" && arr[i - 1] !== undefined) {
+        newArr.pop(arr[i - 1]);
+        continue;
+      }
+      if (arr[i] == "--double-next" && arr[i + 1] !== undefined) {
+        newArr.push(arr[i + 1] * 2);
+        i++;
+        continue;
+      }
+      if (arr[i] == "--double-prev" && arr[i - 1] !== undefined) {
+        newArr.pop(arr[i - 1]);
+        newArr.push(arr[i - 1] * 2);
+        continue;
+      }
     }
   }
+
   return newArr;
 };
