@@ -44,5 +44,5 @@ module.exports = function transform(arr) {
       }
     }
   }
-  return (newArr = newArr.filter((item) => typeof item == "number"));
+  return (newArr = newArr.filter((item) => item !== undefined));
 };
