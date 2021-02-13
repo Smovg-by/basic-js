@@ -22,7 +22,7 @@ const chainMaker = {
 
   removeLink(position) {
     if (
-      position >= this.getlength() ||
+      position >= this.getLength() ||
       position <= 0 ||
       typeof position !== "number"
     ) {
