@@ -23,6 +23,15 @@ const chainMaker = {
   },
 
   removeLink(position) {
+    if (
+      position >= this.getlength() ||
+      position <= 0 ||
+      typeof position !== "number"
+    ) {
+      this.tempArray = [];
+      throw new Error();
+    }
+
     this.tempArray.splice(position - 1, 1);
     return this;
   },
