@@ -12,6 +12,7 @@ const chainMaker = {
 
   finishChain() {
     let resultArray = this.tempArray.join("~~");
+    this.tempArray = [];
     return resultArray;
   },
 
