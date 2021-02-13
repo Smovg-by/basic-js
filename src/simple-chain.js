@@ -6,12 +6,12 @@ const chainMaker = {
   },
 
   addLink(value) {
-    this.tempArray.push(`( ${value} )~~`);
+    this.tempArray.push(`( ${value} )`);
     return this;
   },
 
   finishChain() {
-    let resultArray = this.tempArray.join("");
+    let resultArray = this.tempArray.join("~~");
     return resultArray;
   },
 
