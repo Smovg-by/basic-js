@@ -1,12 +1,9 @@
 module.exports = class DepthCalculator {
   calculateDepth(arr) {
-    return (
-      1 +
-      (Array.isArray(arr)
-        ? arr.reduce(function (max, item) {
-            return Math.max(max, calculateDepth(item));
-          }, 0)
-        : -1)
-    );
+    return Array.isArray(arr)
+      ? arr.length > 0
+        ? Math.max(...arr.map((item) => 1 + this.calculateDepth(item)))
+        : 1
+      : 0;
   }
 };
