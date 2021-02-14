@@ -10,15 +10,10 @@ module.exports = function repeater(str, options) {
 
   let firstLevelString = str + firstLevelArray.join(options.additionSeparator);
 
-  console.log(firstLevelString);
-
   for (let j = 0; j < options.repeatTimes; j++) {
     secondLevelArray.push(firstLevelString);
   }
 
-  console.log(secondLevelArray);
-
   let secondLevelString = secondLevelArray.join(options.separator);
-
-  console.log(secondLevelString);
+  return secondLevelString;
 };
