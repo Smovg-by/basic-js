@@ -17,10 +17,6 @@ module.exports = function repeater(str, options) {
     options.addition = "";
   }
 
-  //   if (options.addition == null) {
-  //     options.addition = "null";
-  //   }
-
   if (options.separator == undefined) {
     options.separator = "+";
   }
