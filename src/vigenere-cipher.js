@@ -10,76 +10,32 @@
 // module.exports = VigenereCipheringMachine;
 
 function encrypt(message, key) {
-  let alphabetArray = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "Q",
-    "P",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
-  let descriptionPosition;
   let messageArray = [];
   let keyArray = [];
-  let encriptionArray = [];
+  let tempArray = [];
 
-  for (let i = 0; i < message.length; i++) {
-    messageArray.push(alphabetArray.indexOf(message[i]));
-  }
+  messageArray = message.toUpperCase().split("");
 
-  for (let j = 0; j < key.length; j++) {
-    keyArray.push(alphabetArray.indexOf(key[j]));
-  }
+  keyArray = key.toUpperCase().split("");
 
-  for (let k = 0; k < (messageArray.length && keyArray.length); k++) {
-    descriptionPosition = messageArray[k] + keyArray[k];
-    encriptionArray.push(descriptionPosition);
-  }
+  console.log(messageArray);
 
-  console.log(`messageArray is ${messageArray}`);
+  console.log(keyArray);
 
-  console.log(`keyArray is ${keyArray}`);
-
-  console.log(`encriptionArray is ${encriptionArray}`);
-}
-
-function convert(messageArray, keyArray) {
-  // ФУНКЦИЯ СКЛАДЫВАЕТ ДВА МАССИВА, ОТДЕЛЯЕТ СТРОКИ ОТ ЦИФР, СИМВОЛОВ. ПЕРЕВОДИТ СИМВОЛЫ В ВЕРХНИЙ РЕГИСТР
-
-  let convArray = [];
-
-  j = 0;
-
-  for (i = 0; i < messageArray.length; i++) {
-    if (j < keyArray.length && messageArray[i] >= "A") {
-      convArray.push(messageArray[i].toUpperCase() + keyArray[j].toUpperCase());
+  for (i = 0, j = 0; i < messageArray.length; i++) {
+    if (
+      messageArray[i].charCodeAt(0) >= 65 &&
+      messageArray[i].charCodeAt(0) <= 90
+    ) {
+      tempArray.push(
+        messageArray[i].charCodeAt(0) +
+          keyArray[j % keyArray.length].charCodeAt(0) -
+          130
+      );
       j++;
     } else {
-      convArray.push(messageArray[i].toUpperCase());
-      j = 0;
-      continue;
+      tempArray.push(messageArray[i]);
     }
   }
-
-  console.log(convArray);
+  console.log(tempArray);
 }
