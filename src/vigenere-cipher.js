@@ -13,14 +13,12 @@ function encrypt(message, key) {
   let messageArray = [];
   let keyArray = [];
   let tempArray = [];
+  let encryptArray = [];
+  let encryptMessage;
 
   messageArray = message.toUpperCase().split("");
 
   keyArray = key.toUpperCase().split("");
-
-  console.log(messageArray);
-
-  console.log(keyArray);
 
   for (i = 0, j = 0; i < messageArray.length; i++) {
     if (
@@ -37,5 +35,14 @@ function encrypt(message, key) {
       tempArray.push(messageArray[i]);
     }
   }
-  console.log(tempArray);
+
+  for (let k = 0; k < tempArray.length; k++) {
+    if (typeof tempArray[k] == "number") {
+      encryptArray.push(String.fromCharCode((tempArray[k] % 26) + 65));
+    } else {
+      encryptArray.push(tempArray[k]);
+    }
+  }
+  encryptMessage = encryptArray.join("");
+  return encryptMessage;
 }
